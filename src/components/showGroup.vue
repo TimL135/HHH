@@ -1,6 +1,6 @@
 <template>
   <div v-if="group">
-    <Accordion :items="accordionItems" v-if="groupUser.length">
+    <Accordion :items="accordionItems" v-if="groupUser.length" style="width: 90vw;">
       <template #users>
         <div v-for="user of groupUser">
           {{ user.name }}
@@ -10,7 +10,10 @@
         <Modal title="Aufgabe hinzufügen" v-model="addModal">
           <createTask :group="group" :groupUser="groupUser" :user="user" v-model="addModal"></createTask>
           <template #button>
-            <Button class="py-2 btn btn-primary m-2 ">Aufgabe hinzufügen</Button>
+            <div style="height: 1px;"></div>
+            <div class="m-1 ">
+              <Button class="py-2 btn btn-success w-100">Aufgabe hinzufügen</Button>
+            </div>
           </template>
         </Modal>
       </template>
@@ -25,7 +28,8 @@
                 v-model="showModal"></showTask>
               <template #button>
                 <div class="m-1">
-                  <Button class="btn btn-primary w-100">{{ task[1].title }}</Button>
+                  <Button class="btn btn-primary w-100">{{ task[1].title }} ({{ new
+                    Date(task[1].appointment || task[1].createAt).toLocaleDateString() }})</Button>
                 </div>
               </template>
             </Modal>
@@ -41,7 +45,8 @@
                 v-model="showModal"></showTask>
               <template #button>
                 <div class="m-1">
-                  <Button class="btn btn-primary w-100">{{ task[1].title }}</Button>
+                  <Button class="btn btn-primary w-100">{{ task[1].title }} ({{ new
+                    Date(task[1].appointment || task[1].createAt).toLocaleDateString() }})</Button>
                 </div>
               </template>
             </Modal>

@@ -3,7 +3,7 @@
     <addShoppingItem :group="group" :user="user"></addShoppingItem>
     <template #button>
       <div class="m-1">
-        <Button class="btn btn-primary w-100">add</Button>
+        <Button class="btn btn-success w-100">hinzufügen</Button>
       </div>
     </template>
   </Modal>
@@ -14,14 +14,18 @@
     </div>
     <template #button>
       <div class="m-1">
-        <Button class="btn btn-danger w-100">clear</Button>
+        <Button class="btn btn-danger w-100">leeren</Button>
       </div>
     </template>
   </Modal>
   <div v-for="shoppingItem of Object.entries(group.shoppingList.shoppingItems || {})">
     <Modal>
       <showShoppingItem :group="group" :user="user" :item="shoppingItem[1]" :itemKey="shoppingItem[0]"></showShoppingItem>
-      <template #button>{{ shoppingItem[0] }}({{ shoppingItem[1].amount }})</template>
+      <template #button>
+        <div class="m-1">
+          <Button class="w-100 btn btn-primary">{{ shoppingItem[0] }} ({{ shoppingItem[1].amount }})</Button>
+        </div>
+      </template>
     </Modal>
   </div>
 </template>
