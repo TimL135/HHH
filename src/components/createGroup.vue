@@ -2,7 +2,7 @@
   <div>
     <TextInput placeholder="name" v-model="name"></TextInput>
     <TextInput placeholder="password" v-model="password"></TextInput>
-    <CheckboxInput v-model="isPublic">private Gruppe</CheckboxInput>
+    <!-- <CheckboxInput v-model="isPublic">private Gruppe</CheckboxInput> -->
     <Button class="btn btn-primary w-100 mt-2" @click="create">erstellen</Button>
   </div>
 </template>

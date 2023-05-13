@@ -4,6 +4,7 @@
 <script setup lang="ts">
 import { ref, toRefs, watch } from "vue";
 import * as type from "../types";
+import { Button } from "custom-mbd-components";
 const props = withDefaults(
   defineProps<{ modelValue: string; user: type.User }>(),
   {}
