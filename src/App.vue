@@ -18,13 +18,10 @@ import Dashboard from './views/Dashboard.vue';
 import Groups from './views/Groups.vue';
 import Login from './views/auth/Login.vue';
 import Navbar from './components/Navbar.vue';
-import { user, userData, reloads, rerender } from './Api';
+import { userData, reloads, rerender } from './Api';
 import { Button } from 'custom-mbd-components';
 const view = ref('login');
 
-console.log(user.value)
-if (!user.value) view.value = 'login';
-else view.value = 'dashboard';
 
 watch(reloads, newValue => {
   if (newValue > 1) newData.value = true;

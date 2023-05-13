@@ -4,7 +4,7 @@
       <template #button><Button :sideButton="true" @click="getGroups">suche</Button></template>
     </SearchInput>
     <div v-for="group of searchGroups" class="d-flex justify-content-between mt-2">
-      {{ group.name }}<Button @click="joinGroup(group.id, user.id)">join</Button>
+      {{ group.name }}<Button @click="join(group)">join</Button>
     </div>
   </div>
 </template>
@@ -17,6 +17,13 @@ const props = withDefaults(defineProps<{ user: type.User }>(), {});
 const { user } = toRefs(props);
 const searchGroups = ref<type.Group[]>([])
 const groupSearch = ref('');
+
+async function join(group: type.Group) {
+  await joinGroup(group.id, user.value.id)
+  group.users.push(user.value.id)
+  user.value.groups.push(group)
+}
+
 async function getGroups() {
   try {
     searchGroups.value = await searchGroup(groupSearch.value)

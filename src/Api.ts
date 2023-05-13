@@ -136,7 +136,7 @@ export async function getGroupUsers(uids: string[]): Promise<type.GroupUser> {
 
 export async function joinGroup(groupId: string, userId: string) {
   await updateDoc(doc(getFirestore(), 'groups', groupId), { ['users']: arrayUnion(userId) });
-  window.location.reload();
+  rerender.value++;
 }
 
 export async function addGroup(group: type.Group) {

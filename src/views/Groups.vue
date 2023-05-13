@@ -24,7 +24,7 @@ import createGroup from '../components/createGroup.vue';
 import showGroup from '../components/showGroup.vue';
 import searchGroup from '../components/searchGroup.vue';
 import { Button } from 'custom-mbd-components';
-import { getGroupUsers, reloads, user } from '../Api';
+import { getGroupUsers, reloads } from '../Api';
 
 const props = withDefaults(defineProps<{ modelValue: string; user: type.User }>(), {});
 const { modelValue, user } = toRefs(props);
@@ -34,7 +34,6 @@ const emit = defineEmits(['update:modelValue']);
 function switchRoute(route: string) {
   emit('update:modelValue', route);
 }
-
 const group = ref({});
 if (user.value.groups.length == 1) loadGroup(user.value.groups[0])
 const groupUsers = ref([] as type.GroupUser[]);

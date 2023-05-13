@@ -4,8 +4,7 @@
     <PasswordInput placeholder="passwort" v-model="password"></PasswordInput>
     <Button @click="login" class="w-100 btn btn-primary mt-2"> login</Button>
     <Button @click="switchRoute('register')" class="w-100 btn btn-primary mt-2">
-      register</Button
-    >
+      register</Button>
   </div>
 </template>
 <script setup lang="ts">
@@ -21,11 +20,13 @@ const emit = defineEmits(["update:modelValue"]);
 const email = ref("");
 const password = ref("");
 
+watch(API.user, newValue => switchRoute("dashboard"))
+
 async function login() {
   try {
     await API.login(email.value, password.value);
     switchRoute("dashboard");
-  } catch {}
+  } catch { }
 }
 
 function switchRoute(route: string) {
