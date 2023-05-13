@@ -82,7 +82,6 @@ export async function login(email: string, password: string): Promise<void> {
   const auth = getAuth();
   await signInWithEmailAndPassword(auth, email, password);
   getCurrentUser();
-  window.location.reload();
 }
 
 export async function logout(): Promise<void> {

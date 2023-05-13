@@ -22,6 +22,7 @@ import { user, userData, reloads, rerender } from './Api';
 import { Button } from 'custom-mbd-components';
 const view = ref('login');
 
+console.log(user.value)
 if (!user.value) view.value = 'login';
 else view.value = 'dashboard';
 
