@@ -26,7 +26,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, toRefs, watch } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 import * as type from '../types';
 import { TextInput, TextareaInput, SelectInput, Button, RadioGroup, DateInput, TimeInput, CheckboxInput } from 'custom-mbd-components';
 import { repeatOptions } from '../global';

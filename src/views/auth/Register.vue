@@ -2,23 +2,13 @@
   <div>
     <TextInput placeholder="name" v-model="name" name="name"></TextInput>
     <EmailInput placeholder="email" v-model="email" name="email"></EmailInput>
-    <PasswordInput
-      placeholder="passwort"
-      v-model="password"
-      name="password"
-    ></PasswordInput>
-    <PasswordInput
-      placeholder="passwort bestätigen"
-      v-model="confirmPassword"
-      name="confirmPassword"
-    ></PasswordInput>
-    <Button @click="register" class="btn btn-primary w-100 mt-3"
-      >registrieren</Button
-    >
+    <PasswordInput placeholder="passwort" v-model="password" name="password"></PasswordInput>
+    <PasswordInput placeholder="passwort bestätigen" v-model="confirmPassword" name="confirmPassword"></PasswordInput>
+    <Button @click="register" class="btn btn-primary w-100 mt-3">registrieren</Button>
   </div>
 </template>
 <script setup lang="ts">
-import { ref, toRefs, watch } from "vue";
+import { ref } from "vue";
 import * as type from "../../types";
 import * as API from "../../Api";
 import {
@@ -27,9 +17,7 @@ import {
   EmailInput,
   Button,
 } from "custom-mbd-components";
-const props = withDefaults(defineProps<{ modelValue: string }>(), {});
-const { modelValue } = toRefs(props);
-const emit = defineEmits(["update:modelValue"]);
+import { view } from "../../global";
 const name = ref("");
 const email = ref("");
 const password = ref("");
@@ -49,9 +37,8 @@ async function register() {
   if (Object.keys(errors.value).length > 0) return;
   try {
     await API.register(name.value, email.value, password.value);
-    console.log("test");
-    emit("update:modelValue", "dashboard");
-  } catch {}
+    view.value = "dashboard";
+  } catch { }
 }
 </script>
 <style scoped></style>

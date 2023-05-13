@@ -8,13 +8,11 @@
   <Button class="btn btn-primary w-100 mt-2" @click="createTask">erstellen</Button>
 </template>
 <script setup lang="ts">
-import { ref, toRefs, watch } from 'vue';
+import { ref, toRefs } from 'vue';
 import * as type from '../types';
-import { TextInput, TextareaInput, SelectInput, Button, RadioGroup, CheckboxInput, DateInput } from 'custom-mbd-components';
+import { TextInput, TextareaInput, SelectInput, Button, RadioGroup, DateInput } from 'custom-mbd-components';
 import { addTask } from '../Api';
 import { repeatOptions } from '../global';
-
-const emit = defineEmits(['update:modelValue']);
 
 const props = withDefaults(
   defineProps<{
@@ -44,7 +42,7 @@ async function createTask() {
     repeat: repeat.value,
     worker: worker.value,
     appointment: appointment.value,
-  };
+  } as type.Task;
   try {
     await addTask(group.value.id, JSON.stringify(Math.random()).slice(2), task);
     document.getElementsByClassName("btn-close")[0]?.click()

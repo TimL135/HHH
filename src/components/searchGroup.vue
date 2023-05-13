@@ -9,7 +9,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, toRefs, watch } from 'vue';
+import { ref, toRefs } from 'vue';
 import * as type from '../types';
 import { SearchInput, Button } from 'custom-mbd-components';
 import { searchGroup, joinGroup } from "../Api"

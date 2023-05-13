@@ -30,10 +30,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, toRefs, watch } from 'vue';
+import { toRefs } from 'vue';
 import * as type from '../types';
-import { TextInput, TextareaInput, SelectInput, Button, RadioGroup, DateInput, TimeInput, CheckboxInput, Modal } from 'custom-mbd-components';
-import { repeatOptions } from '../global';
+import { Button, Modal } from 'custom-mbd-components';
 import { clearShoppingList } from '../Api';
 import addShoppingItem from './addShoppingItem.vue';
 import showShoppingItem from './showShoppingItem.vue';
@@ -49,11 +48,10 @@ function closeModal() {
 const props = withDefaults(
   defineProps<{
     group: type.Group;
-    groupUser: type.GroupUser[];
     user: type.User;
   }>(),
   {}
 );
-const { group, groupUser, user } = toRefs(props);
+const { group, user } = toRefs(props);
 </script>
 <style scoped></style>

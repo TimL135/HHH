@@ -54,7 +54,7 @@
         </div>
       </template>
       <template #shoppingList>
-        <showShoppingList :group="group" :groupUser="groupUser" :user="user"></showShoppingList>
+        <showShoppingList :group="group" :user="user"></showShoppingList>
       </template>
     </Accordion>
   </div>

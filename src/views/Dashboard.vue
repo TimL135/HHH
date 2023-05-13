@@ -2,17 +2,13 @@
   <div v-if="user">Moin, {{ user.name }}</div>
 </template>
 <script setup lang="ts">
-import { ref, toRefs, watch } from "vue";
+import { toRefs } from "vue";
 import * as type from "../types";
-import { Button } from "custom-mbd-components";
 const props = withDefaults(
-  defineProps<{ modelValue: string; user: type.User }>(),
+  defineProps<{ user: type.User }>(),
   {}
 );
-const { modelValue } = toRefs(props);
-const emit = defineEmits(["update:modelValue"]);
-function switchRoute(route: string) {
-  emit("update:modelValue", route);
-}
+
+
 </script>
 <style scoped></style>

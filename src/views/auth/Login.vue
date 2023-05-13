@@ -8,19 +8,15 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, toRefs, watch } from "vue";
-import * as type from "../../types";
+import { ref, watch } from "vue";
 import * as API from "../../Api";
 import { PasswordInput, EmailInput, Button } from "custom-mbd-components";
-
-const props = withDefaults(defineProps<{ modelValue: string }>(), {});
-const { modelValue } = toRefs(props);
-const emit = defineEmits(["update:modelValue"]);
+import { view } from "../../global";
 
 const email = ref("");
 const password = ref("");
 
-watch(API.user, newValue => switchRoute("dashboard"))
+watch(API.user, () => switchRoute("dashboard"))
 
 async function login() {
   try {
@@ -30,7 +26,7 @@ async function login() {
 }
 
 function switchRoute(route: string) {
-  emit("update:modelValue", route);
+  view.value = route;
 }
 </script>
 <style scoped></style>

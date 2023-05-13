@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-
+export const view = ref('login');
 export const repeatOptions = ref([
   { text: 'einmal', value: 0 },
   { text: 'jeden tag', value: 1 },

@@ -7,9 +7,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, toRefs, watch } from 'vue';
+import { ref, toRefs } from 'vue';
 import * as type from '../types';
-import { TextInput, CheckboxInput, Button } from 'custom-mbd-components';
+import { TextInput, Button } from 'custom-mbd-components';
 import { addGroup } from '../Api';
 
 const props = withDefaults(defineProps<{ modelValue: string; user: type.User }>(), {});
