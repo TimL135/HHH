@@ -19,9 +19,9 @@ export default defineConfig({
       manifest: {
         background_color: "#ffffff",
         theme_color: "#ffffff",
-        name: "hhh",
-        short_name: "hhh",
-        start_url: "/gt2/",
+        name: "HHH",
+        short_name: "HHH",
+        start_url: "/HHH/",
         display: "standalone",
         icons: [
           {
