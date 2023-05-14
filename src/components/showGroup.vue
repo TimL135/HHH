@@ -40,7 +40,24 @@
         <div v-for=" done of [true, false]">
           <div>{{ (!done ? 'nicht ' : '') + 'erledigt' }}</div>
           <div
-            v-for="task of Object.entries(group.tasks).filter(e => e[1].done == done).sort((a, b) => +(a[1].appointment || a[1].createAt) - +(b[1].appointment || b[1].createAt))"
+            v-for="task of Object.entries(group.tasks).filter(e => e[1].done == done).filter(e => e[1].worker || e[1].done == true).sort((a, b) => +(a[1].appointment || a[1].createAt) - +(b[1].appointment || b[1].createAt))"
+            class="mb-1">
+            <Modal :title="task[1].title">
+              <showTask :task="task[1]" :group="group" :groupUser="groupUser" :user="user" :task-id="task[0]"
+                v-model="showModal"></showTask>
+              <template #button>
+                <div class="m-1">
+                  <Button class="btn btn-primary w-100">{{ task[1].title }} ({{ new
+                    Date(task[1].appointment || task[1].createAt).toLocaleDateString() }})</Button>
+                </div>
+              </template>
+            </Modal>
+          </div>
+        </div>
+        <div>
+          <div>nicht zugewiesen</div>
+          <div
+            v-for="task of Object.entries(group.tasks).filter(e => !e[1].worker && !e[1].done).sort((a, b) => +(a[1].appointment || a[1].createAt) - +(b[1].appointment || b[1].createAt))"
             class="mb-1">
             <Modal :title="task[1].title">
               <showTask :task="task[1]" :group="group" :groupUser="groupUser" :user="user" :task-id="task[0]"
