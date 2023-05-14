@@ -1,8 +1,10 @@
 <template>
   Ersteller: {{ creator?.name }}
   <TextInput placeholder="kurz Beschreibung" v-model="title"></TextInput>
-  <SelectInput placeholder="zugewiesen" v-model="searchSelect" :options="groupUser" :option-projection="e => e.name"
-    @select-item="e => (worker = e.id)"></SelectInput>
+
+  <SelectInput v-if="!dashboard" placeholder="zugewiesen" v-model="searchSelect" :options="groupUser"
+    :option-projection="e => e.name" @select-item="e => (worker = e.id)"></SelectInput>
+
   <RadioGroup class="mt-2 p-0 py-2" v-model="repeat" :options="repeatOptions"></RadioGroup>
   <DateInput placeholder="nächster Termin" v-model="appointment" v-if="repeat >= 1"></DateInput>
   <TextareaInput placeholder="Notizen (optinoal)" v-model="notes"></TextareaInput>
@@ -39,8 +41,11 @@ const props = withDefaults(
     user: type.User;
     task: type.Task;
     taskId: type.Id;
+    dashboard?: boolean
   }>(),
-  {}
+  {
+    dashboard: false
+  }
 );
 const { group, groupUser, user, task, taskId } = toRefs(props);
 

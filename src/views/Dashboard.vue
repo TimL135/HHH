@@ -9,7 +9,8 @@
       <h4 class="mb-2">{{ e.name }}</h4>
       <div v-for="task of Object.entries(e.tasks)">
         <Modal :title="task[1].title">
-          <showTask :task="task[1]" :group="e" :groupUser="e.users" :user="user" :task-id="task[0]" v-model="showModal">
+          <showTask dashboard :task="task[1]" :group="e" :groupUser="e.users" :user="user" :task-id="task[0]"
+            v-model="showModal">
           </showTask>
           <template #button>
             <div class="m-1">
