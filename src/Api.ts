@@ -117,7 +117,7 @@ export async function getUserGroups(uid: string) {
       const index = docs.findIndex(e => e.id == doc.id);
       if (index >= 0) docs[index] = { ...doc.data(), id: doc.id };
       else docs.push({ ...doc.data(), id: doc.id });
-      reloads.value++;
+      rerender.value++;
     });
   });
   return docs;
@@ -184,5 +184,8 @@ export async function clearShoppingList(groupId: string) {
   await updateDoc(doc(getFirestore(), 'groups', groupId), {
     [`shoppingList`]: {},
   });
+  rerender.value++;
+}
+export function makeRerender() {
   rerender.value++;
 }

@@ -11,9 +11,9 @@
     </div>
   </div>
   <div v-else>
-    <div v-for="e of user.groups" @click="loadGroup(e)">
+    <h4 v-for="e of user.groups" @click="loadGroup(e)">
       {{ e.name }}
-    </div>
+    </h4>
     <showGroup :group="group" :groupUser="groupUsers" :user="user"></showGroup>
   </div>
 </template>

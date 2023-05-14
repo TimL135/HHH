@@ -21,7 +21,7 @@
         <div v-for=" done of [true, false]">
           <div>{{ (!done ? 'nicht ' : '') + 'erledigt' }}</div>
           <div
-            v-for="task of Object.entries(group.tasks).filter(e => e[1].worker == user.id).filter(e => e[1].done == done)"
+            v-for="task of Object.entries(group.tasks).filter(e => e[1].worker == user.id).filter(e => e[1].done == done).sort((a, b) => +(a[1].appointment || a[1].createAt) - +(b[1].appointment || b[1].createAt))"
             class="mb-1">
             <Modal :title="task[1].title">
               <showTask :task="task[1]" :group="group" :groupUser="groupUser" :user="user" :task-id="task[0]"
@@ -39,7 +39,9 @@
       <template #tasks>
         <div v-for=" done of [true, false]">
           <div>{{ (!done ? 'nicht ' : '') + 'erledigt' }}</div>
-          <div v-for="task of Object.entries(group.tasks).filter(e => e[1].done == done)" class="mb-1">
+          <div
+            v-for="task of Object.entries(group.tasks).filter(e => e[1].done == done).sort((a, b) => +(a[1].appointment || a[1].createAt) - +(b[1].appointment || b[1].createAt))"
+            class="mb-1">
             <Modal :title="task[1].title">
               <showTask :task="task[1]" :group="group" :groupUser="groupUser" :user="user" :task-id="task[0]"
                 v-model="showModal"></showTask>

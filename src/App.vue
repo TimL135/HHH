@@ -4,7 +4,7 @@
       <Button v-if="newData" @click="forceRerender">neue daten laden</Button>
       <Register v-if="view == 'register'"></Register>
       <Login v-if="view == 'login'"></Login>
-      <Dashboard v-if="view == 'dashboard'" :user="userData"></Dashboard>
+      <Dashboard v-if="view == 'dashboard' && userData && renderComponent" :user="userData"></Dashboard>
       <Groups v-if="view == 'groups' && renderComponent" :user="userData"></Groups>
     </div>
   </div>
@@ -22,7 +22,7 @@ import { Button } from 'custom-mbd-components';
 import { view } from './global';
 
 watch(reloads, newValue => {
-  if (newValue > 1) newData.value = true;
+  newData.value = true;
 });
 watch(rerender, () => {
   forceRerender()
