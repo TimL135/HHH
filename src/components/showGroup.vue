@@ -72,8 +72,14 @@
           </div>
         </div>
       </template>
-      <template #shoppingList>
+      <!-- <template #shoppingList>
         <showShoppingList :group="group" :user="user"></showShoppingList>
+      </template> -->
+      <template #leave>
+        <div style="height: 1px;"></div>
+        <div class="m-1 ">
+          <Button class="py-2 btn btn-danger w-100">Gruppe verlassen</Button>
+        </div>
       </template>
     </Accordion>
   </div>
@@ -84,7 +90,7 @@ import * as type from '../types';
 import { Modal, Accordion, Button } from 'custom-mbd-components';
 import createTask from './createTask.vue';
 import showTask from './showTask.vue';
-import showShoppingList from './showShoppingList.vue';
+// import showShoppingList from './showShoppingList.vue';
 
 const props = withDefaults(
   defineProps<{
@@ -109,7 +115,12 @@ const accordionItems = computed(() => {
   });
   array.push({ title: 'Meine Aufgaben', hash: 'myTasks' });
   array.push({ title: 'Aufgaben', hash: 'tasks' });
-  array.push({ title: 'Einkaufsliste', hash: 'shoppingList' });
+  // array.push({ title: 'Einkaufsliste', hash: 'shoppingList' });
+  array.push({
+    title: 'verlassen',
+    hash: 'leave',
+    noAccordion: true,
+  });
   return array;
 });
 </script>

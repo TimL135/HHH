@@ -1,6 +1,6 @@
 <template>
   <div v-if="user.groups.length == 0">
-    Du hast noch keine Gruppe
+    <h4>Du hast noch keine Gruppe</h4>
     <div>
       <Button class="me-2 btn btn-primary" @click="view = 'search'">Gruppe Suche</Button>
       <Button class="btn btn-primary" @click="view = 'create'">Gruppe erstellen</Button>
@@ -11,10 +11,20 @@
     </div>
   </div>
   <div v-else>
-    <h4 v-for="e of user.groups" @click="loadGroup(e)">
+    <h4 v-for="e of user.groups" @click="loadGroup(e)"
+      :class="group?.name == e.name ? 'text-decoration-underline text-primary' : ''">
       {{ e.name }}
     </h4>
     <showGroup :group="group" :groupUser="groupUsers" :user="user"></showGroup>
+    <div class="mt-2">
+      <h3>weitere Gruppe finden</h3>
+      <searchGroup :user="user"></searchGroup>
+    </div>
+    <div class="mt-2">
+      <h3>neue Gruppe erstellen</h3>
+      <createGroup :user="user" v-model="view"></createGroup>
+    </div>
+
   </div>
 </template>
 <script setup lang="ts">
@@ -32,7 +42,7 @@ const { user } = toRefs(props);
 const view = ref('');
 
 
-const group = ref({});
+const group = ref({} as type.Group);
 if (user.value.groups.length == 1) loadGroup(user.value.groups[0])
 const groupUsers = ref([] as type.GroupUser[]);
 async function loadGroup(e: type.Group) {

@@ -1,7 +1,6 @@
 <template>
   <div>
     <TextInput placeholder="name" v-model="name"></TextInput>
-    <TextInput placeholder="password" v-model="password"></TextInput>
     <!-- <CheckboxInput v-model="isPublic">private Gruppe</CheckboxInput> -->
     <Button class="btn btn-primary w-100 mt-2" @click="create">erstellen</Button>
   </div>
@@ -18,9 +17,10 @@ const { modelValue, user } = toRefs(props);
 const emit = defineEmits(['update:modelValue']);
 
 const name = ref('');
-const password = ref('');
+
 const isPublic = ref(true);
 async function create() {
+  if (name.value == '') return;
   try {
     const group = {
       name: name.value,

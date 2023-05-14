@@ -117,9 +117,10 @@ export async function getUserGroups(uid: string) {
       const index = docs.findIndex(e => e.id == doc.id);
       if (index >= 0) docs[index] = { ...doc.data(), id: doc.id };
       else docs.push({ ...doc.data(), id: doc.id });
-      rerender.value++;
+      reloads.value++;
     });
   });
+  rerender.value++;
   return docs;
 }
 export async function getGroupUsers(uids: string[]): Promise<type.GroupUser> {

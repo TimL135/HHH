@@ -1,7 +1,7 @@
 <template>
   <div class="container d-flex justify-content-center mt-5">
     <div>
-      <Button v-if="newData" @click="forceRerender">neue daten laden</Button>
+      <Button v-if="newData" @click="forceRerender" class="w-100 btn btn-primary">neue daten laden</Button>
       <Register v-if="view == 'register'"></Register>
       <Login v-if="view == 'login'"></Login>
       <Dashboard v-if="view == 'dashboard' && userData && renderComponent" :user="userData"></Dashboard>
@@ -22,7 +22,8 @@ import { Button } from 'custom-mbd-components';
 import { view } from './global';
 
 watch(reloads, newValue => {
-  newData.value = true;
+  if (newValue > userData.value?.groups.length || 0)
+    newData.value = true;
 });
 watch(rerender, () => {
   forceRerender()
