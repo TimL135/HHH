@@ -1,8 +1,12 @@
 <template>
   <div>
-    <TextInput placeholder="name" v-model="name"></TextInput>
+    <TextInput placeholder="name" v-model="name">
+      <template #button>
+        <Button sideButton @click="create">erstellen</Button>
+      </template>
+    </TextInput>
     <!-- <CheckboxInput v-model="isPublic">private Gruppe</CheckboxInput> -->
-    <Button class="btn btn-primary w-100 mt-2" @click="create">erstellen</Button>
+
   </div>
 </template>
 <script setup lang="ts">

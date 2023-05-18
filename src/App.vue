@@ -1,14 +1,16 @@
 <template>
-  <div class="container d-flex justify-content-center mt-5">
-    <div>
-      <Button v-if="newData" @click="forceRerender" class="w-100 btn btn-primary">neue daten laden</Button>
-      <Register v-if="view == 'register'"></Register>
-      <Login v-if="view == 'login'"></Login>
-      <Dashboard v-if="view == 'dashboard' && userData && renderComponent" :user="userData"></Dashboard>
-      <Groups v-if="view == 'groups' && renderComponent" :user="userData"></Groups>
+  <div class="d-flex flex-column justify-content-between " style="height: 100vh;">
+    <div class="container d-flex justify-content-center mt-5">
+      <div>
+        <Button v-if="newData" @click="forceRerender" class="w-100 btn btn-primary">neue daten laden</Button>
+        <Register v-if="view == 'register'"></Register>
+        <Login v-if="view == 'login'"></Login>
+        <Dashboard v-if="view == 'dashboard' && userData && renderComponent" :user="userData"></Dashboard>
+        <Groups v-if="view == 'groups' && renderComponent" :user="userData"></Groups>
+      </div>
     </div>
+    <Navbar :user="userData"></Navbar>
   </div>
-  <Navbar :user="userData"></Navbar>
 </template>
 <script setup lang="ts">
 import { ref, watch, nextTick } from 'vue';

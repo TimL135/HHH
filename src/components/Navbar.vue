@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed-bottom d-flex justify-content-center">
+  <div class="d-flex justify-content-center bg-white sticky-bottom ">
     <!-- groups -->
     <svg v-if="user" :class="view == 'groups' ? 'active' : ''" @click="switchRoute('groups')"
       xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people"
@@ -52,4 +52,5 @@ svg {
 
 .active {
   color: var(--bs-primary);
-}</style>
+}
+</style>

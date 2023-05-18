@@ -1,7 +1,7 @@
 <template>
   <div>
     <SearchInput placeholder="Gruppe" v-model="groupSearch">
-      <template #button><Button :sideButton="true" @click="getGroups">suche</Button></template>
+      <template #button><Button sideButton @click="getGroups">suche</Button></template>
     </SearchInput>
     <div v-for="group of searchGroups" class="d-flex justify-content-between mt-2">
       {{ group.name }}<Button @click="join(group)">join</Button>
