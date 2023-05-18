@@ -15,6 +15,7 @@ import {
   deleteField,
   onSnapshot,
   arrayUnion,
+  arrayRemove,
 } from 'firebase/firestore';
 import { collection, addDoc, getDocs, updateDoc } from 'firebase/firestore';
 import { ref, watch, watchEffect } from 'vue';
@@ -123,7 +124,7 @@ export async function getUserGroups(uid: string) {
   rerender.value++;
   return docs;
 }
-export async function getGroupUsers(uids: string[]): Promise<type.GroupUser> {
+export async function getGroupUsers(uids: string[]): Promise<type.GroupUser[]> {
   const docs: QueryDocumentSnapshot<DocumentData>[] = [];
   const querySnapshot = await getDocs(query(collection(getFirestore(), 'users'), where(documentId(), 'in', uids)));
   querySnapshot.forEach(doc => {
@@ -132,11 +133,17 @@ export async function getGroupUsers(uids: string[]): Promise<type.GroupUser> {
   return docs.map(user => ({
     ...(user.data() as type.User),
     id: user.id,
-  })) as unknown as type.GroupUser;
+  })) as unknown as type.GroupUser[];
 }
 
 export async function joinGroup(groupId: string, userId: string) {
   await updateDoc(doc(getFirestore(), 'groups', groupId), { ['users']: arrayUnion(userId) });
+  rerender.value++;
+}
+export async function leaveGroup(groupId: string, userId: string) {
+  await updateDoc(doc(getFirestore(), 'groups', groupId), { ['users']: arrayRemove(userId) });
+  if (userData.value?.groups)
+    userData.value.groups = userData.value.groups.filter(e => e.id != groupId);
   rerender.value++;
 }
 
@@ -153,7 +160,7 @@ export async function searchGroup(groupName: string) {
   return docs.map(group => ({
     ...(group.data() as type.User),
     id: group.id,
-  })) as unknown as type.Group;
+  })) as unknown as type.Group[];
 }
 
 export async function addTask(groupId: string, taskId: string, task: type.Task) {

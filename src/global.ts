@@ -1,4 +1,9 @@
 import { ref } from 'vue';
+
+export function closeModal() {
+  (document.getElementsByClassName("btn-close")[0] as HTMLButtonElement)?.click()
+}
+
 export const view = ref('login');
 export const repeatOptions = ref([
   { text: 'einmal', value: 0 },

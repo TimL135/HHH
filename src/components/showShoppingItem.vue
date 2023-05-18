@@ -7,10 +7,10 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, toRefs, watch } from 'vue';
+import { ref, toRefs } from 'vue';
 import * as type from '../types';
-import { TextInput, TextareaInput, SelectInput, Button, RadioGroup, DateInput, TimeInput, CheckboxInput, Modal, NumberInput } from 'custom-mbd-components';
-import { repeatOptions } from '../global';
+import { TextInput, Button, NumberInput } from 'custom-mbd-components';
+import { closeModal } from '../global';
 import { addShoppingItem, deleteShoppingItem } from '../Api';
 
 const props = withDefaults(
@@ -34,7 +34,7 @@ async function edit() {
         creator: user.value.id
     } as type.ShoppingItem
     await addShoppingItem(group.value.id, shopItem.value, item);
-    document.getElementsByClassName("btn-close")[0]?.click()
+    closeModal()
 }
 </script>
 <style scoped></style>

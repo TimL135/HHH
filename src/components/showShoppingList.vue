@@ -36,15 +36,13 @@ import { Button, Modal } from 'custom-mbd-components';
 import { clearShoppingList } from '../Api';
 import addShoppingItem from './addShoppingItem.vue';
 import showShoppingItem from './showShoppingItem.vue';
+import { closeModal } from '../global';
 
 function clear() {
   clearShoppingList(group.value.id)
   closeModal()
 }
 
-function closeModal() {
-  document.getElementsByClassName(" btn-close")[0]?.click()
-}
 const props = withDefaults(
   defineProps<{
     group: type.Group;

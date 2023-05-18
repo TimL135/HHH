@@ -9,8 +9,7 @@
       <h4 class="mb-2">{{ e.name }}</h4>
       <div v-for="task of Object.entries(e.tasks)">
         <Modal :title="task[1].title">
-          <showTask dashboard :task="task[1]" :group="e" :groupUser="e.users" :user="user" :task-id="task[0]"
-            v-model="showModal">
+          <showTask dashboard :task="task[1]" :group="e" :groupUser="e.users" :user="user" :task-id="task[0]">
           </showTask>
           <template #button>
             <div class="m-1">
@@ -33,7 +32,7 @@ const props = withDefaults(
   {}
 );
 const { user } = toRefs(props);
-const tasksToday = ref<any[]>([])
+const tasksToday = ref<type.Group[]>([])
 
 tasksToday.value = user.value.groups.map(group => ({
   ...group, tasks:

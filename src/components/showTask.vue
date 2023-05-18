@@ -31,7 +31,7 @@
 import { computed, ref, toRefs } from 'vue';
 import * as type from '../types';
 import { TextInput, TextareaInput, SelectInput, Button, RadioGroup, DateInput, TimeInput, CheckboxInput } from 'custom-mbd-components';
-import { repeatOptions } from '../global';
+import { repeatOptions, closeModal } from '../global';
 import { addTask, deleteTask } from '../Api';
 
 const props = withDefaults(
@@ -44,7 +44,7 @@ const props = withDefaults(
     dashboard?: boolean
   }>(),
   {
-    dashboard: false
+    dashboard: false,
   }
 );
 const { group, groupUser, user, task, taskId } = toRefs(props);
@@ -111,7 +111,7 @@ async function editTask(makeRepeat = false) {
   }
   try {
     await addTask(group.value.id, taskId.value, editTask);
-    document.getElementsByClassName("btn-close")[0]?.click()
+    closeModal()
   } catch { }
 }
 </script>

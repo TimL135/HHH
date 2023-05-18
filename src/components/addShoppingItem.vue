@@ -10,7 +10,7 @@
 import { ref, toRefs, } from 'vue';
 import * as type from '../types';
 import { TextInput, SelectInput, Button, NumberInput } from 'custom-mbd-components';
-import { standartShoppingItems } from '../global';
+import { closeModal, standartShoppingItems } from '../global';
 import { addShoppingItem } from '../Api';
 
 const props = withDefaults(
@@ -37,7 +37,7 @@ async function add() {
   } catch {
     console.log("error")
   }
-  document.getElementsByClassName("btn-close")[0]?.click()
+  closeModal()
 }
 </script>
 <style scoped></style>

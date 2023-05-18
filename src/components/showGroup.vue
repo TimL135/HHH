@@ -76,10 +76,18 @@
         <showShoppingList :group="group" :user="user"></showShoppingList>
       </template> -->
       <template #leave>
-        <div style="height: 1px;"></div>
-        <div class="m-1 ">
-          <Button class="py-2 btn btn-danger w-100">Gruppe verlassen</Button>
-        </div>
+        <Modal :title="`${group.name} verlassen?`">
+          <div class="d-flex justify-content-end">
+            <Button class="btn btn-danger me-2 w-50" @click="leaveGroup(group.id, user.id)">Ja</Button>
+            <Button class="btn btn-primary w-50" @click="closeModal()">Nein</Button>
+          </div>
+          <template #button>
+            <div style="height: 1px;"></div>
+            <div class="m-1 ">
+              <Button class="py-2 btn btn-danger w-100">Gruppe verlassen</Button>
+            </div>
+          </template>
+        </Modal>
       </template>
     </Accordion>
   </div>
@@ -90,6 +98,8 @@ import * as type from '../types';
 import { Modal, Accordion, Button } from 'custom-mbd-components';
 import createTask from './createTask.vue';
 import showTask from './showTask.vue';
+import { leaveGroup } from '../Api';
+import { closeModal } from "../global"
 // import showShoppingList from './showShoppingList.vue';
 
 const props = withDefaults(
